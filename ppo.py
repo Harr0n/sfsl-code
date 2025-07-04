@@ -1,9 +1,9 @@
 """
-SFsFL-RL  |  Simplified multi-client environment + PPO & DDPG training
+SFsL  |  PPO & DDPG
 Paper section reference:
   – State/action design   →  Sec. III-A, Eq.(55)–(57)
   – Reliability reward    →  Eq.(43)
-  – Lyapunov queues       →  Eq.(46)–(50)  (light version)
+  – Lyapunov queues       →  Eq.(46)–(50)
 """
 
 import numpy as np
@@ -23,7 +23,6 @@ E_THRESH = 5e3              # energy budget per slot (arbitrary units)
 
 
 class SFsFLPPOEnv(gym.Env):
-    """Multi-client SFsFL environment with reliability reward."""
 
     def __init__(self, seed: int = 0):
         super().__init__()
@@ -42,7 +41,6 @@ class SFsFLPPOEnv(gym.Env):
 
     # ---------- helpers ---------- #
     def _normalize_state(self, delta_D, loss, rb, fk, fe):
-        """map raw vals → [0,1]"""
         return np.array([
             delta_D / 5_000.0,            # ΔD_i ∈ [0,5000]
             loss    / 5.0,                # Loss  ∈ [0,5]
@@ -52,7 +50,6 @@ class SFsFLPPOEnv(gym.Env):
         ], dtype=np.float32)
 
     def _system_state_vector(self):
-        """aggregate per-client stats → single 5-D state"""
         return self._normalize_state(
             self.data_size.mean(),
             self.loss_vec.mean(),
@@ -74,7 +71,7 @@ class SFsFLPPOEnv(gym.Env):
         self.Q_T, self.Q_E = 0.0, 0.0
         return self._system_state_vector()
 
-    # ----- reward (Eq.(43) + lightweight Lyapunov) ----- #
+    # ----- reward (Eq.(43) + Lyapunov) ----- #
     def _compute_reward(self, lr_k, th_dc, th_adj, rho_k, rho_e):
         time_vec   = self.data_size / (self.cpu_pt * lr_k + 1e-6)
         energy_vec = th_dc * rho_k + th_adj * rho_e
