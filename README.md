@@ -1,4 +1,4 @@
-# SFsFL-RL: PPO and DDPG Comparison
+# SFsL: PPO and DDPG Comparison
 
 This repository contains a simplified simulation of the SFsL scenario used in our paper, including PPO and DDPG training under a multi-client reliability-aware RL environment.
 
@@ -11,5 +11,5 @@ This repository contains a simplified simulation of the SFsL scenario used in ou
 ### 🔧 How to Run
 
 ```bash
-pip install stable-baselines3[extra] torch gym matplotlib
+pip install stable-baselines3 torch gym matplotlib
 python ppo.py
