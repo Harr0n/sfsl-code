@@ -22,7 +22,7 @@ T_THRESH = ()              # time budget per slot   (arbitrary units)
 E_THRESH = ()               # energy budget per slot (arbitrary units)
 
 
-class SFsFLPPOEnv(gym.Env):
+class SFsLPPOEnv(gym.Env):
 
     def __init__(self, seed: int = 0):
         super().__init__()
@@ -100,7 +100,7 @@ class SFsFLPPOEnv(gym.Env):
 
 # ----------------------- training utils ----------------------- #
 def train_agent(algo="ppo", total_steps=100_000, seed=0):
-    env = make_vec_env(lambda: SFsFLPPOEnv(seed), n_envs=1)
+    env = make_vec_env(lambda: SFsLPPOEnv(seed), n_envs=1)
 
     if algo == "ppo":
         model = PPO(
@@ -150,7 +150,7 @@ def plot_results(r_ppo, r_ddpg):
     plt.plot(r_ddpg, label="DDPG")
     plt.xlabel("Evaluation Step")
     plt.ylabel("Reliability")
-    plt.title("PPO vs DDPG on SFsFL (3 clients)")
+    plt.title("PPO vs DDPG on SFsL")
     plt.legend()
     plt.tight_layout()
     plt.savefig("ppo_vs_ddpg.png", dpi=300)
