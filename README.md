@@ -6,7 +6,7 @@ This repository contains a simplified simulation of the SFsL scenario used in ou
 
 - **State/Action Design** → Sec. III-A, Eq. (55)–(57)  
 - **Reliability Reward** → Eq. (43)  
-- **Lyapunov Queues (light version)** → Eq. (46)–(50)
+- **Lyapunov Queues** → Eq. (46)–(50)
 
 ### 🔧 How to Run
 
