@@ -17,9 +17,9 @@ import matplotlib.pyplot as plt
 import os, random
 
 # ----------------------- Environment ----------------------- #
-NUM_CLI = 3                 # number of physical-twin clients
-T_THRESH = 8e3              # time budget per slot   (arbitrary units)
-E_THRESH = 5e3              # energy budget per slot (arbitrary units)
+NUM_CLI = ()                # number of physical-twin clients
+T_THRESH = ()              # time budget per slot   (arbitrary units)
+E_THRESH = ()               # energy budget per slot (arbitrary units)
 
 
 class SFsFLPPOEnv(gym.Env):
